@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sys3_rocketa_game", "sys3_rocketa_game\sys3_rocketa_game.csproj", "{961421B3-6FCB-4C20-A2A6-222D07674055}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wpf3d_rocket_game", "wpf3d_rocket_game\wpf3d_rocket_game.csproj", "{EEFC0F25-51B4-4690-915C-5489F027EABA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{961421B3-6FCB-4C20-A2A6-222D07674055}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{961421B3-6FCB-4C20-A2A6-222D07674055}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{961421B3-6FCB-4C20-A2A6-222D07674055}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEFC0F25-51B4-4690-915C-5489F027EABA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEFC0F25-51B4-4690-915C-5489F027EABA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEFC0F25-51B4-4690-915C-5489F027EABA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEFC0F25-51B4-4690-915C-5489F027EABA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
