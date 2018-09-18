@@ -72,6 +72,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -99,6 +100,7 @@
     <None Include="Resources\asteroid1.png" />
     <None Include="Resources\asteroid2.png" />
     <None Include="Resources\asteroid3.png" />
+    <None Include="Resources\level1.wav" />
     <Content Include="rocket.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

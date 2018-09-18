@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace sys3_rocketa_game
 {
 	public partial class MainForm : Form
 	{
 		Rocket player;
-		int Level_Lenght = 2000;
+		int LevelLenght = 2000;
 		bool GameInProcess;
 		bool ForceRestart;
 		DateTime startTime;
+		SoundPlayer soundPlayer;
 		enum Difficulty
 		{
 			HARD = 2,
@@ -35,29 +38,43 @@ namespace sys3_rocketa_game
 		{
 			InitializeComponent();
 			CenterToScreen();
+
+			#region joke
+			MessageBox.Show("Your video card does not support alpha blending with floating point render targets (D3DFMT_A16B16G16R16F), which is required to run this game.", "Graphics error", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Warning);
+			MessageBox.Show("It was a joke!", ";)");
+			MessageBox.Show("\tROCKETA GAME v0.1\n\t\tLEVEL 1\n\nSETTINGS:\n\nGRAPHICS: ULTRA\nSOUNDS: 200%\nCONTROLS: ← ↑ →\n\nEXIT", "Game menu in developing...", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			#endregion // comment this region if u don't like jokes
+
 			player = new Rocket();
 			Load += Form1_Load;
 		}
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			Start();
+			StartLevel1();
 		}
 
-		private void Start()
+		private void StartLevel1()
 		{
 			ForceRestart = false;
 			startTime = DateTime.Now;
 
+			//level soundtrack
+			try
+			{
+				soundPlayer = new SoundPlayer("level1.wav");
+				soundPlayer.PlayLooping();
+			}
+			catch(Exception ex) { }
+
 			// background position
-			pictureBoxBackground.Size = new Size(ClientSize.Width, Level_Lenght);
-			pictureBoxBackground.Location = new Point(0, Size.Height - Level_Lenght);
+			pictureBoxBackground.Size = new Size(ClientSize.Width, LevelLenght);
+			pictureBoxBackground.Location = new Point(0, Size.Height - LevelLenght);
 			pictureBoxBackground.Paint += PictureBoxBackground_Paint;
 
 			// adding controls to front
 			objectSpawnRandomizer();
-			//pictureBoxBackground.Controls.Add(new Asteroid() { Location = new Point(80, pictureBoxBackground.Height - ClientSize.Height) });
-			//pictureBoxBackground.Controls.Add(new Asteroid() { Location = new Point(140, pictureBoxBackground.Height - ClientSize.Height) });
+			//test
 			//pictureBoxBackground.Controls.Add(new Asteroid() { Location = new Point(260, pictureBoxBackground.Height - ClientSize.Height) });
 			//pictureBoxBackground.Controls.Add(new Asteroid() { Location = new Point(190, pictureBoxBackground.Height - ClientSize.Height) });
 
@@ -73,7 +90,7 @@ namespace sys3_rocketa_game
 			GameInProcess = true;
 
 			// check collisions timer
-			Task task = Task.Run(() => checkCollisions());
+			Task.Run(() => checkCollisions());
 			
 			// controls
 			KeyDown += Form1_KeyDown;
@@ -82,7 +99,7 @@ namespace sys3_rocketa_game
 			// controls timer
 			System.Windows.Forms.Timer controlsTimer = new System.Windows.Forms.Timer();
 			controlsTimer.Tick += controlsTimerTick;
-			controlsTimer.Interval = 5;
+			controlsTimer.Interval = 2;
 			controlsTimer.Start();
 
 			// level movement timer
@@ -94,6 +111,7 @@ namespace sys3_rocketa_game
 
 		private void PictureBoxBackground_Paint(object sender, PaintEventArgs e)
 		{
+			// finish
 			e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
 			TextRenderer.DrawText(e.Graphics, "Hello World", new Font("Microsoft Sans Serif", 16F, FontStyle.Bold), new Point(ClientSize.Width / 3, ClientSize.Height / 3), Color.White);
 		}
@@ -102,6 +120,9 @@ namespace sys3_rocketa_game
 		{
 			if (GameInProcess == false)
 				return;
+
+			if (pictureBoxBackground.Location.Y >= 0)
+				player.Top--; // boost to finish
 
 			doMovement();
 		}
@@ -129,7 +150,7 @@ namespace sys3_rocketa_game
 		void checkCollisions()
 		{
 			const int refresh_time = 100;
-			while(GameInProcess) // TODO
+			while(GameInProcess) 
 			{
 				if(pictureBoxBackground.Controls.Cast<Control>()
 					.Where(c => c is Asteroid)
@@ -228,7 +249,7 @@ namespace sys3_rocketa_game
 		{
 			pictureBoxBackground.Controls.Clear();
 			moving.up = moving.down = moving.left = moving.right = false;
-			Start();
+			StartLevel1();
 		}
 	}
 }
