@@ -42,7 +42,7 @@ namespace sys3_rocketa_game
 			#region joke
 			MessageBox.Show("Your video card does not support alpha blending with floating point render targets (D3DFMT_A16B16G16R16F), which is required to run this game.", "Graphics error", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Warning);
 			MessageBox.Show("It was a joke!", ";)");
-			MessageBox.Show("\tROCKETA GAME v0.1\n\t\tLEVEL 1\n\nSETTINGS:\n\nGRAPHICS: ULTRA\nSOUNDS: 200%\nCONTROLS: ← ↑ →\n\nEXIT", "Game menu in developing...", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			MessageBox.Show("\tROCKETA GAME v0.1\n\t\tLEVEL 1\n\nSETTINGS:\n\nDIFFICULTY: HARD\nGRAPHICS: ULTRA\nSOUNDS: 200%\nCONTROLS: ← ↑ →\n\nEXIT", "Game menu in developing...", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			#endregion // comment this region if u don't like jokes
 
 			player = new Rocket();
